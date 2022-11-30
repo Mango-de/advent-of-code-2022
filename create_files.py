@@ -1,4 +1,9 @@
-import sys, os, requests, dotenv
+import os
+import sys
+
+import dotenv
+import requests
+
 
 dotenv.load_dotenv()
 
