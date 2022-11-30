@@ -10,12 +10,12 @@ for l in result.text.split('\n')[:5]:
     print(l)
 print('...')
 
-with open(f'inputs/{day}', 'w') as f:
+with open(f'inputs/{day:02d}', 'w') as f:
     f.write(result.text[:-1])
 
-with open(f'solutions/{day}.py', 'w') as f:
+with open(f'solutions/{day:02d}.py', 'w') as f:
     f.write(
-f'''with open('inputs/{day}') as f:
+f'''with open('inputs/{day:02d}') as f:
     l = 
 
 # Part 1
