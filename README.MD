@@ -1,6 +1,6 @@
 # Advent of Code 2022
 
-My solutions for Advent of Code 2022 (probably not all of them ;D)
+My solutions for Advent of Code 2022 (propably not all of them ;D)
 
 Feel free to use [my script](create_files.py) to create all the necessary files, including your puzzle input. For that you need to install the dotenv module:
 
