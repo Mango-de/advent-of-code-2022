@@ -7,7 +7,7 @@ import requests
 
 dotenv.load_dotenv()
 
-_, day = sys.argv
+day = int(sys.argv[1])
 
 result = requests.get(f'https://adventofcode.com/2022/day/{day}/input', cookies={'session': os.environ['SESSION_TOKEN']})
 
@@ -28,6 +28,7 @@ f'''with open('inputs/{day:02d}') as f:
 
 
 # Part 2
+
 
 '''
     )
