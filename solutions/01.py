@@ -20,5 +20,5 @@ def part_2(l):
 
     print(sum(top))
 
-part_1()
-part_2()
+part_1(l)
+part_2(l)
