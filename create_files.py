@@ -1,5 +1,5 @@
 import os
-import sys
+from datetime import datetime
 
 import dotenv
 import requests
@@ -7,8 +7,7 @@ import requests
 
 dotenv.load_dotenv()
 
-day = int(sys.argv[1])
-
+day = datetime.today().day
 result = requests.get(f'https://adventofcode.com/2022/day/{day}/input', cookies={'session': os.environ['SESSION_TOKEN']})
 
 for l in result.text.split('\n')[:5]:
@@ -21,14 +20,18 @@ with open(f'inputs/{day:02d}', 'w') as f:
 with open(f'solutions/{day:02d}.py', 'w') as f:
     f.write(
 f'''with open('inputs/{day:02d}') as f:
-    l = 
-
-# Part 1
+    l = []
 
 
+def part_1(l):
+\t
 
-# Part 2
 
+def part_2(l):
+\t
+
+part_1(l)
+part_2(l)
 
 '''
     )
