@@ -24,11 +24,11 @@ f'''with open('inputs/{day:02d}') as f:
 
 
 def part_1(l):
-\t
+    pass
 
 
 def part_2(l):
-\t
+    pass
 
 part_1(l)
 part_2(l)
