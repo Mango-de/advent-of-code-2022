@@ -32,6 +32,5 @@ def part_2(l):
 
 part_1(l)
 part_2(l)
-
 '''
     )
