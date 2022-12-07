@@ -4,7 +4,7 @@ with open('inputs/06') as f:
 
 def part_1(text: str):
     quantity = 4
-    for i in range(3, len(text)):
+    for i in range(quantity - 1, len(text)):
         t = ''
         for j in range(quantity):
             if (char := text[i - j]) in t:
@@ -17,7 +17,7 @@ def part_1(text: str):
 
 def part_2(text: str):
     quantity = 14
-    for i in range(3, len(text)):
+    for i in range(quantity - 1, len(text)):
         t = ''
         for j in range(quantity):
             if (char := text[i - j]) in t:
