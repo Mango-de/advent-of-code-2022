@@ -2,7 +2,7 @@ with open('inputs/10') as f:
     l = f.read().splitlines()
 
 
-def part_1(l):
+def part_1(l: list[str]):
     x = 1
     cycle = 0
     signal_strength = 0
@@ -25,7 +25,7 @@ def part_1(l):
     print(signal_strength)
 
 
-def part_2(l):
+def part_2(l: list[str]):
     x = 1
     cycle = 0
     sprites = ['.'] * 240
