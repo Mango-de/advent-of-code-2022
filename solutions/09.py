@@ -58,54 +58,45 @@ def part_1(l):
     print(len(tail_visited))
 
 
-# def part_2(l):
-#     knots = [(0, 0)] * 10
+def part_2(l):
+    knots = [(0, 0)] * 10
 
-#     tail_visited = set()
-#     tail_visited.add(knots[-1])
+    tail_visited = set()
+    tail_visited.add(knots[-1])
 
-#     for direction, quantity in l:
-#         instruction = tuple(quantity * x for x in directions[direction])
-#         knots[0] = tuple(map(add, knots[0], instruction))
-#         for i in range(9):
-#             h, t = knots[i:i + 2]
-#             if not touching(h, t):
-#                 x, y = t
-#                 if diagonally(h, t):
-#                     if h[0] > x and h[1] < y:
-#                         x += 1; y -= 1
-#                     elif h[0] > x and h[1] > y:
-#                         x += 1; y += 1
-#                     elif h[0] < x and h[1] < y:
-#                         x -= 1; y -= 1
-#                     elif h[0] < x and h[1] > y:
-#                         x -= 1; y += 1
-#                     knots[i + 1] = (x, y)
-#                     if i == 8:
-#                         tail_visited.add((x, y))
-#                 while not touching((x, y), h):
-#                     if h[0] > x:
-#                         x += 1
-#                     elif h[1] > y:
-#                         y += 1
-#                     elif h[0] < x:
-#                         x -= 1
-#                     elif h[1] < y:
-#                         y -= 1
-#                     knots[i + 1] = (x, y)
-#                     if i == 8:
-#                         tail_visited.add((x, y))
+    for direction, quantity in l:
+        for _ in range(quantity):
+            knots[0] = tuple(map(add, knots[0], directions[direction]))
+            for i in range(9):
+                h, t = knots[i:i + 2]
+                if not touching(h, t):
+                    x, y = t
+                    if diagonally(h, t):
+                        if h[0] > x and h[1] < y:
+                            x += 1; y -= 1
+                        elif h[0] > x and h[1] > y:
+                            x += 1; y += 1
+                        elif h[0] < x and h[1] < y:
+                            x -= 1; y -= 1
+                        elif h[0] < x and h[1] > y:
+                            x -= 1; y += 1
+                        knots[i + 1] = (x, y)
+                        if i == 8:
+                            tail_visited.add((x, y))
+                    while not touching((x, y), h):
+                        if h[0] > x:
+                            x += 1
+                        elif h[1] > y:
+                            y += 1
+                        elif h[0] < x:
+                            x -= 1
+                        elif h[1] < y:
+                            y -= 1
+                        knots[i + 1] = (x, y)
+                        if i == 8:
+                            tail_visited.add((x, y))
 
-#     print(len(tail_visited))
-
-# l = [*map(lambda x: (x[0], int(x[1])), map(lambda x: x.split(), """R 5
-# U 8
-# L 8
-# D 3
-# R 17
-# D 10
-# L 25
-# U 20""".splitlines()))]
+    print(len(tail_visited))
 
 part_1(l)
-# part_2(l)
+part_2(l)
