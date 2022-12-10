@@ -1,6 +1,7 @@
 with open('inputs/01') as f:
     l = [*map(sum, (map(int, x.splitlines()) for x in f.read().split('\n\n')))]
 
+
 def part_1(l: list[int]):
     print(max(l))
 
