@@ -11,15 +11,11 @@ directions = {
 }
 
 
-def touching(h, t):
+def touching(h: tuple[int, int], t: tuple[int, int]) -> bool:
     return abs(h[0] - t[0]) <= 1 and abs(h[1] - t[1]) <= 1
 
 
-def diagonally(h, t):
-    return h[0] != t[0] and h[1] != t[1]
-
-
-def solve(l, n):
+def solve(l: list[tuple[str, int]], n: int) -> int:
     knots = [(0, 0)] * n
 
     tail_visited = set()
@@ -32,25 +28,13 @@ def solve(l, n):
                 h, t = knots[i:i + 2]
                 if not touching(h, t):
                     x, y = t
-                    if diagonally(h, t):
-                        if h[0] > x and h[1] < y:
-                            x += 1; y -= 1
-                        elif h[0] > x and h[1] > y:
-                            x += 1; y += 1
-                        elif h[0] < x and h[1] < y:
-                            x -= 1; y -= 1
-                        elif h[0] < x and h[1] > y:
-                            x -= 1; y += 1
-                        knots[i + 1] = (x, y)
-                        if i == n - 2:
-                            tail_visited.add((x, y))
                     while not touching((x, y), h):
                         if h[0] > x:
                             x += 1
-                        elif h[1] > y:
-                            y += 1
                         elif h[0] < x:
                             x -= 1
+                        if h[1] > y:
+                            y += 1
                         elif h[1] < y:
                             y -= 1
                         knots[i + 1] = (x, y)
@@ -60,11 +44,11 @@ def solve(l, n):
     return len(tail_visited)
 
 
-def part_1(l):
+def part_1(l: list[tuple[str, int]]):
     print(solve(l, 2))
 
 
-def part_2(l):
+def part_2(l: list[tuple[str, int]]):
     print(solve(l, 10))
 
 part_1(l)
