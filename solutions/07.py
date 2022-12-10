@@ -1,24 +1,22 @@
-import re
-
 with open('inputs/07') as f:
     l = f.read().splitlines()
 
 
-def get_sizes(l):
+def get_sizes(l: list[str]) -> dict[tuple, int]:
     sizes = {}
     current_path = ()
     used = set()
 
     for line in l:
         if line.startswith('$'):
-            groups = re.match(r'\$ ([a-z]+) ?(\S+)?', line).groups()
-            if groups[0] == 'cd':
-                if groups[1] == '/':
+            if (groups := line.split())[1] == 'cd':
+                destination = groups[2]
+                if destination == '/':
                     continue
-                elif groups[1] == '..':
+                elif destination == '..':
                     current_path = current_path[:-1]
                 else:
-                    current_path = (*current_path, groups[1])
+                    current_path = (*current_path, destination)
         else:
             size, name = line.split()
             if size.isdigit():
@@ -36,13 +34,13 @@ def get_sizes(l):
     return sizes
 
 
-def part_1(l):
-    sizes = get_sizes(l)
+def part_1(l: list[str]):
+    sizes = get_sizes(l).values()
 
-    print(sum(filter(lambda x: x <= 100_000, sizes.values())))
+    print(sum(filter(lambda x: x <= 100_000, sizes)))
 
 
-def part_2(l):
+def part_2(l: list[str]):
     sizes = get_sizes(l)
 
     print(min(filter(lambda x: x >= 30_000_000 - (70_000_000 - sizes[()]), sizes.values())))
