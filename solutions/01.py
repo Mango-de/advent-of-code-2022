@@ -1,12 +1,11 @@
 with open('inputs/01') as f:
     l = [*map(sum, (map(int, x.splitlines()) for x in f.read().split('\n\n')))]
 
-
-def part_1(l):
+def part_1(l: list[int]):
     print(max(l))
 
 
-def part_2(l):
+def part_2(l: list[int]):
     top = [0] * 3
 
     for s in l:
