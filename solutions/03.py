@@ -2,7 +2,7 @@ with open('inputs/03') as f:
     l = f.read().splitlines()
 
 
-def get_priority(item: str):
+def get_priority(item: str) -> int:
     if item.isupper():
         return ord(item) - 38
     elif item.islower():
@@ -29,6 +29,7 @@ def part_2(l: list[str]):
         priority_sum += get_priority(group_item)
 
     print(priority_sum)
+
 
 part_1(l)
 part_2(l)

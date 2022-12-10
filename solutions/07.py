@@ -45,5 +45,6 @@ def part_2(l: list[str]):
 
     print(min(filter(lambda x: x >= 30_000_000 - (70_000_000 - sizes[()]), sizes.values())))
 
+
 part_1(l)
 part_2(l)

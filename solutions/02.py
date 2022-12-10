@@ -2,7 +2,7 @@ with open('inputs/02') as f:
     l = [*map(lambda x: x.split(' '), f.read().splitlines())]
 
 
-def solve(l: list[str], scores: dict[str, dict[str, int]]):
+def solve(l: list[str], scores: dict[str, dict[str, int]]) -> int:
     score = 0
 
     for a, b in l:
@@ -53,6 +53,7 @@ def part_2(l: list[str]):
     }
 
     print(solve(l, scores))
+
 
 part_1(l)
 part_2(l)

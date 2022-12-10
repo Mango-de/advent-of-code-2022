@@ -49,5 +49,6 @@ def part_2(l: list[str]):
         sprite = sprites[i:i + 40]
         print(''.join(sprite))
 
+
 part_1(l)
 part_2(l)

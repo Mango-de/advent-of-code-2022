@@ -20,5 +20,6 @@ def part_2(l: list[int]):
 
     print(sum(top))
 
+
 part_1(l)
 part_2(l)

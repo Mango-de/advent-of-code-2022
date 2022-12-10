@@ -51,5 +51,6 @@ def part_1(l: list[tuple[str, int]]):
 def part_2(l: list[tuple[str, int]]):
     print(solve(l, 10))
 
+
 part_1(l)
 part_2(l)

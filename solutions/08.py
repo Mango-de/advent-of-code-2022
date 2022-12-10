@@ -78,5 +78,6 @@ def part_2(grid: list[list[int]]):
 
     print(max_score)
 
+
 part_1(grid)
 part_2(grid)

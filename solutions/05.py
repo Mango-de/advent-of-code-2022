@@ -47,5 +47,6 @@ def part_2(crates: list[list[str]], instructions: list[tuple[int, int, int]]):
 
     print(''.join(map(lambda x: x[-1], crates)))
 
+
 part_1(get_crates(l), get_instructions(l))
 part_2(get_crates(l), get_instructions(l))

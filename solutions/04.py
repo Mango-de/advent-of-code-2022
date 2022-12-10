@@ -24,5 +24,6 @@ def part_2(l: list[tuple[int, int]]):
 
     print(overlapping)
 
+
 part_1(l)
 part_2(l)

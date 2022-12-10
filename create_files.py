@@ -4,7 +4,6 @@ from datetime import datetime
 import dotenv
 import requests
 
-
 dotenv.load_dotenv()
 
 day = datetime.today().day
@@ -19,18 +18,19 @@ with open(f'inputs/{day:02d}', 'w') as f:
 
 with open(f'solutions/{day:02d}.py', 'w') as f:
     f.write(
-f'''with open('inputs/{day:02d}') as f:
-    l = []
+f"""with open('inputs/{day:02d}') as f:
+    l = f.read().splitlines()
 
 
-def part_1(l):
+def part_1(l: list[str]):
     pass
 
 
-def part_2(l):
+def part_2(l: list[str]):
     pass
+
 
 part_1(l)
 part_2(l)
-'''
+"""
     )

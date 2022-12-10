@@ -2,7 +2,7 @@ with open('inputs/06') as f:
     t = f.read()
 
 
-def solve(text: str, quantity: int):
+def solve(text: str, quantity: int) -> int:
     for i in range(quantity - 1, len(text)):
         t = ''
         for j in range(quantity):
@@ -19,6 +19,7 @@ def part_1(text: str):
 
 def part_2(text: str):
     print(solve(text, 14))
+
 
 part_1(t)
 part_2(t)
