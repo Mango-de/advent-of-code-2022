@@ -2,30 +2,31 @@ with open('inputs/03') as f:
     l = f.read().splitlines()
 
 
-def part_1(l):
+def get_priority(item: str):
+    if item.isupper():
+        return ord(item) - 38
+    elif item.islower():
+        return ord(item) - 96
+
+
+def part_1(l: list[str]):
     priority_sum = 0
 
     for rucksack in l:
         comp1 = rucksack[:len(rucksack)//2]
         comp2 = rucksack[len(rucksack)//2:]
         item_type = set(comp1).intersection(comp2).pop()
-        if item_type.isupper():
-            priority_sum += ord(item_type) - 38
-        elif item_type.islower():
-            priority_sum += ord(item_type) - 96
+        priority_sum += get_priority(item_type)
 
     print(priority_sum)
 
 
-def part_2(l):
+def part_2(l: list[str]):
     priority_sum = 0
 
     for i in range(0, len(l), 3):
         group_item = set(l[i]).intersection(l[i + 1], l[i + 2]).pop()
-        if group_item.isupper():
-            priority_sum += ord(group_item) - 38
-        elif group_item.islower():
-            priority_sum += ord(group_item) - 96
+        priority_sum += get_priority(group_item)
 
     print(priority_sum)
 
