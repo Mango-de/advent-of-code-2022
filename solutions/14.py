@@ -7,7 +7,7 @@ with open('inputs/14') as f:
 directions = [(0, 1), (-1, 1), (1, 1)]
 
 
-def get_rocks(paths: list[tuple[int, int]]) -> set:
+def get_rocks(paths: list[list[tuple[int, int]]]) -> set:
     rocks = set()
 
     for path in paths:
@@ -29,7 +29,7 @@ def get_rocks(paths: list[tuple[int, int]]) -> set:
     return rocks
 
 
-def part_1(paths: list[tuple[int, int]]):
+def part_1(paths: list[list[tuple[int, int]]]):
     blocked = get_rocks(paths)
 
     success = True
@@ -57,7 +57,7 @@ def part_1(paths: list[tuple[int, int]]):
     print(sand)
 
 
-def part_2(paths: list[tuple[int, int]]):
+def part_2(paths: list[list[tuple[int, int]]]):
     blocked = get_rocks(paths)
     ground = 2 + max([r[1] for r in blocked])
 
