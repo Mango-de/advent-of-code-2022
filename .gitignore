@@ -1,5 +1,7 @@
 **/.git
+**/__pycache__/**
 .env
 .vscode
 12.py
 16.py
+19.py
