@@ -1,7 +1,14 @@
-with open('inputs/20') as f:
-    numbers = [*enumerate(int(x) for x in f.read().splitlines())]
+from utils.runtime import get_runtime
 
 
+def get_input() -> list[tuple[int, int]]:
+    with open('inputs/20') as f:
+        l = [*enumerate(int(x) for x in f.read().splitlines())]
+
+    return l
+
+
+@get_runtime
 def part_1(numbers: list[tuple[int, int]]):
     order = numbers[:]
 
@@ -18,6 +25,7 @@ def part_1(numbers: list[tuple[int, int]]):
     print(sum(numbers[(i2 + (x + 1) * 1000) % len(numbers)][1] for x in range(3)))
 
 
+@get_runtime
 def part_2(numbers: list[tuple[int, int]]):
     key = 811589153
     numbers = [(x, y * key) for x, y in numbers]
@@ -39,5 +47,5 @@ def part_2(numbers: list[tuple[int, int]]):
     print(sum(numbers[(i2 + (x + 1) * 1000) % len(numbers)][1] for x in range(3)))
 
 
-part_1(numbers[:])
-part_2(numbers[:])
+part_1(get_input())
+part_2(get_input())

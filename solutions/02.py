@@ -1,8 +1,14 @@
-with open('inputs/02') as f:
-    l = [*map(lambda x: x.split(' '), f.read().splitlines())]
+from utils.runtime import get_runtime
 
 
-def solve(l: list[str], scores: dict[str, dict[str, int]]) -> int:
+def get_input() -> list[list[str]]:
+    with open('inputs/02') as f:
+        l = [*map(lambda x: x.split(' '), f.read().splitlines())]
+
+    return l
+
+
+def solve(l: list[list[str]], scores: dict[str, dict[str, int]]) -> int:
     score = 0
 
     for a, b in l:
@@ -11,7 +17,8 @@ def solve(l: list[str], scores: dict[str, dict[str, int]]) -> int:
     return score
 
 
-def part_1(l: list[str]):
+@get_runtime
+def part_1(l: list[list[str]]):
     scores = {
         'A': {
             'X': 4,
@@ -33,7 +40,8 @@ def part_1(l: list[str]):
     print(solve(l, scores))
 
 
-def part_2(l: list[str]):
+@get_runtime
+def part_2(l: list[list[str]]):
     scores = {
         'A': {
             'X': 3,
@@ -55,5 +63,5 @@ def part_2(l: list[str]):
     print(solve(l, scores))
 
 
-part_1(l)
-part_2(l)
+part_1(get_input())
+part_2(get_input())

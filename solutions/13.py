@@ -1,6 +1,11 @@
-with open('inputs/13') as f:
-    pairs = [[eval(packet) for packet in p.splitlines()] for p in f.read().split('\n\n')]
-    # packets = [eval(packet) for packet in f.read().replace('\n\n', '\n').splitlines()]
+from utils.runtime import get_runtime
+
+
+def get_input() -> list[list]:
+    with open('inputs/13') as f:
+        l = [[eval(packet) for packet in p.splitlines()] for p in f.read().split('\n\n')]
+
+    return l
 
 
 def compare_values(v1: int | list, v2: int | list) -> bool | None:
@@ -27,6 +32,7 @@ def compare_values(v1: int | list, v2: int | list) -> bool | None:
         return False
 
 
+@get_runtime
 def part_1(pairs: list[list]):
     indices_sum = 0
 
@@ -37,9 +43,10 @@ def part_1(pairs: list[list]):
     print(indices_sum)
 
 
-# def part_2(packets: list):
-    # packets = [[[2]], [[6]]] + packets
+# @get_runtime
+# def part_2(pairs: list[list]):
+    # pass
 
 
-part_1(pairs)
-# part_2(packets)
+part_1(get_input())
+# part_2(get_input())

@@ -1,14 +1,20 @@
 from operator import add
 
-with open('inputs/09') as f:
-    l = [*map(lambda x: (x[0], int(x[1])), map(lambda x: x.split(), f.read().splitlines()))]
+from utils.runtime import get_runtime
 
-directions = {
+DIRECTIONS = {
     'U': (0, 1),
     'D': (0, -1),
     'L': (-1, 0),
     'R': (1, 0)
 }
+
+
+def get_input() -> list[tuple[str, int]]:
+    with open('inputs/09') as f:
+        l = [*map(lambda x: (x[0], int(x[1])), map(lambda x: x.split(), f.read().splitlines()))]
+
+    return l
 
 
 def touching(h: tuple[int, int], t: tuple[int, int]) -> bool:
@@ -23,7 +29,7 @@ def solve(l: list[tuple[str, int]], n: int) -> int:
 
     for direction, quantity in l:
         for _ in range(quantity):
-            knots[0] = tuple(map(add, knots[0], directions[direction]))
+            knots[0] = tuple(map(add, knots[0], DIRECTIONS[direction]))
             for i in range(n - 1):
                 h, t = knots[i:i + 2]
                 if not touching(h, t):
@@ -44,13 +50,15 @@ def solve(l: list[tuple[str, int]], n: int) -> int:
     return len(tail_visited)
 
 
+@get_runtime
 def part_1(l: list[tuple[str, int]]):
     print(solve(l, 2))
 
 
+@get_runtime
 def part_2(l: list[tuple[str, int]]):
     print(solve(l, 10))
 
 
-part_1(l)
-part_2(l)
+part_1(get_input())
+part_2(get_input())

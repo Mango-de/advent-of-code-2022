@@ -1,10 +1,12 @@
 import re
 
-with open('inputs/05') as f:
-    l = f.read().split('\n\n')
+from utils.runtime import get_runtime
 
 
-def get_crates(l: list[str]) -> list[list[str]]:
+def get_input() -> tuple[list[list[str]], list[tuple[int, int, int]]]:
+    with open('inputs/05') as f:
+        l = f.read().split('\n\n')
+
     crate_count = len(l[0].splitlines()[-1].split('   '))
     crates = []
 
@@ -17,19 +19,16 @@ def get_crates(l: list[str]) -> list[list[str]]:
                 crates[i].append(content)
         crates[i].reverse()
 
-    return crates
-
-
-def get_instructions(l: list[str]) -> list[tuple[int, int, int]]:
     instructions = []
 
     for instruction in l[1].splitlines():
         match = re.match(r'move (\d+) from (\d+) to (\d+)', instruction)
         instructions.append(tuple(map(int, match.groups())))
 
-    return instructions
+    return crates, instructions
 
 
+@get_runtime
 def part_1(crates: list[list[str]], instructions: list[tuple[int, int, int]]):
     for _quantity, _from, _to in instructions:
         crates[_to - 1].extend(crates[_from - 1][-_quantity:][::-1])
@@ -39,6 +38,7 @@ def part_1(crates: list[list[str]], instructions: list[tuple[int, int, int]]):
     print(''.join(map(lambda x: x[-1], crates)))
 
 
+@get_runtime
 def part_2(crates: list[list[str]], instructions: list[tuple[int, int, int]]):
     for _quantity, _from, _to in instructions:
         crates[_to - 1].extend(crates[_from - 1][-_quantity:])
@@ -48,5 +48,5 @@ def part_2(crates: list[list[str]], instructions: list[tuple[int, int, int]]):
     print(''.join(map(lambda x: x[-1], crates)))
 
 
-part_1(get_crates(l), get_instructions(l))
-part_2(get_crates(l), get_instructions(l))
+part_1(*get_input())
+part_2(*get_input())

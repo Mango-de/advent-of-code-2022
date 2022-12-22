@@ -1,10 +1,16 @@
 from itertools import pairwise
 from operator import add
 
-with open('inputs/14') as f:
-    paths = [[*map(lambda y: tuple(map(int, y.split(','))), x.split(' -> '))] for x in f.read().splitlines()]
+from utils.runtime import get_runtime
 
-directions = [(0, 1), (-1, 1), (1, 1)]
+DIRECTIONS = [(0, 1), (-1, 1), (1, 1)]
+
+
+def get_input() -> list[list[tuple[int, int]]]:
+    with open('inputs/14') as f:
+        l = [[*map(lambda y: tuple(map(int, y.split(','))), x.split(' -> '))] for x in f.read().splitlines()]
+
+    return l
 
 
 def get_rocks(paths: list[list[tuple[int, int]]]) -> set:
@@ -29,6 +35,7 @@ def get_rocks(paths: list[list[tuple[int, int]]]) -> set:
     return rocks
 
 
+@get_runtime
 def part_1(paths: list[list[tuple[int, int]]]):
     blocked = get_rocks(paths)
 
@@ -40,7 +47,7 @@ def part_1(paths: list[list[tuple[int, int]]]):
         x, y = 500, 0
 
         while not rest:
-            for direction in directions:
+            for direction in DIRECTIONS:
                 new_pos = tuple(map(add, (x, y), direction))
                 if new_pos[1] > max([r[1] for r in blocked]):
                     rest = True
@@ -57,6 +64,7 @@ def part_1(paths: list[list[tuple[int, int]]]):
     print(sand)
 
 
+@get_runtime
 def part_2(paths: list[list[tuple[int, int]]]):
     blocked = get_rocks(paths)
     ground = 2 + max([r[1] for r in blocked])
@@ -69,7 +77,7 @@ def part_2(paths: list[list[tuple[int, int]]]):
         x, y = 500, 0
 
         while not rest:
-            for direction in directions:
+            for direction in DIRECTIONS:
                 new_pos = tuple(map(add, (x, y), direction))
                 if new_pos not in blocked and new_pos[1] < ground:
                     x, y = new_pos
@@ -84,5 +92,5 @@ def part_2(paths: list[list[tuple[int, int]]]):
     print(sand)
 
 
-part_1(paths)
-part_2(paths)
+part_1(get_input())
+part_2(get_input())

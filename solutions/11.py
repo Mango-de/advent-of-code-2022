@@ -1,10 +1,15 @@
 from copy import deepcopy
 from functools import reduce
 from operator import floordiv, mod, mul
-from typing import Callable
 
-with open('inputs/11') as f:
-    l = f.read().split('\n\n')
+from utils.runtime import get_runtime
+
+
+def get_input() -> list[str]:
+    with open('inputs/11') as f:
+        l = f.read().split('\n\n')
+
+    return l
 
 
 def get_monkeys(l: list[str]) -> dict[int, dict[str, list[int] | str]]:
@@ -24,7 +29,7 @@ def get_monkeys(l: list[str]) -> dict[int, dict[str, list[int] | str]]:
     return monkeys
 
 
-def solve(monkeys: dict[int, dict[str, list[int] | str]], n: int, operator: Callable[[int, int], int], k: int) -> int:
+def solve(monkeys: dict[int, dict[str, list[int] | str]], n: int, operator: ((int, int), int), k: int) -> int:
     for _ in range(n):
         i = 0
         while i != len(monkeys):
@@ -46,17 +51,19 @@ def solve(monkeys: dict[int, dict[str, list[int] | str]], n: int, operator: Call
     return mul(*inspected[:2])
 
 
+@get_runtime
 def part_1(l: list[str]):
     monkeys = get_monkeys(l)
 
     print(solve(monkeys, 20, floordiv, 3))
 
 
+@get_runtime
 def part_2(l: list[str]):
     monkeys = get_monkeys(l)
 
     print(solve(monkeys, 10_000, mod, reduce(mul, map(lambda x: x['test'], monkeys.values()))))
 
 
-part_1(l)
-part_2(l)
+part_1(get_input())
+part_2(get_input())

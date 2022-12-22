@@ -1,9 +1,8 @@
 from collections import defaultdict
 
-with open('inputs/17') as f:
-    instructions = f.read()
+from utils.runtime import get_runtime
 
-rocks = (
+ROCKS = (
     [
         [1] * 4
     ],
@@ -30,6 +29,13 @@ rocks = (
 )
 
 
+def get_input() -> str:
+    with open('inputs/17') as f:
+        l = f.read()
+
+    return l
+
+
 class ChamberTower:
     def __init__(self, instructions: str):
         self.instructions = instructions
@@ -50,7 +56,7 @@ class ChamberTower:
         if nx < 0 or nx > 6:
             return False
 
-        for y, line in enumerate(rocks[self.rock_index]):
+        for y, line in enumerate(ROCKS[self.rock_index]):
             for x, value in enumerate(line):
                 if value:
                     if (nx + x, self.y + y) in self.blocked or nx + x > 6:
@@ -64,7 +70,7 @@ class ChamberTower:
         if ny < 0:
             return False
 
-        for y, line in enumerate(rocks[self.rock_index]):
+        for y, line in enumerate(ROCKS[self.rock_index]):
             for x, value in enumerate(line):
                 if value:
                     if (self.x + x, ny + y) in self.blocked:
@@ -74,7 +80,7 @@ class ChamberTower:
 
     def move(self) -> bool:
         instruction = self.instructions[self.instruction_index]
-        self.instruction_index = (self.instruction_index + 1) % len(instructions)
+        self.instruction_index = (self.instruction_index + 1) % len(self.instructions)
 
         if (x := self.horizontal_movement_possible(instruction)):
             self.x = x[1]
@@ -96,7 +102,7 @@ class ChamberTower:
         return max(x[1] for x in self.blocked)
 
     def add_rock(self):
-        for y, l in enumerate(rocks[self.rock_index]):
+        for y, l in enumerate(ROCKS[self.rock_index]):
             for x, c in enumerate(l):
                 if c:
                     self.blocked.add((self.x + x, self.y + y))
@@ -105,7 +111,7 @@ class ChamberTower:
         self.x = 2
         self.y = self.max_y + 4
 
-        self.rock_index = (self.rock_index + 1) % len(rocks)
+        self.rock_index = (self.rock_index + 1) % len(ROCKS)
         self.settled += 1
 
     def find_pattern(self) -> tuple[list[int], dict[int, int]]:
@@ -136,6 +142,7 @@ class ChamberTower:
         print('+-------+')
 
 
+@get_runtime
 def part_1(instructions: str):
     tower = ChamberTower(instructions)
 
@@ -145,6 +152,7 @@ def part_1(instructions: str):
     print(tower.get_max_y() + 1)
 
 
+@get_runtime
 def part_2(instructions: str):
     tower = ChamberTower(instructions)
     pattern, heights = tower.find_pattern()
@@ -160,5 +168,5 @@ def part_2(instructions: str):
     print(initial_height + height + cycles*cycle_height)
 
 
-part_1(instructions)
-part_2(instructions)
+part_1(get_input())
+part_2(get_input())

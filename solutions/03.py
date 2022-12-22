@@ -1,5 +1,11 @@
-with open('inputs/03') as f:
-    l = f.read().splitlines()
+from utils.runtime import get_runtime
+
+
+def get_input() -> list[str]:
+    with open('inputs/03') as f:
+        l = f.read().splitlines()
+
+    return l
 
 
 def get_priority(item: str) -> int:
@@ -9,6 +15,7 @@ def get_priority(item: str) -> int:
         return ord(item) - 96
 
 
+@get_runtime
 def part_1(l: list[str]):
     priority_sum = 0
 
@@ -21,6 +28,7 @@ def part_1(l: list[str]):
     print(priority_sum)
 
 
+@get_runtime
 def part_2(l: list[str]):
     priority_sum = 0
 
@@ -31,5 +39,5 @@ def part_2(l: list[str]):
     print(priority_sum)
 
 
-part_1(l)
-part_2(l)
+part_1(get_input())
+part_2(get_input())

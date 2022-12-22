@@ -1,7 +1,14 @@
-with open('inputs/04') as f:
-    l = [(tuple(map(int, e1.split('-'))), tuple(map(int, e2.split('-')))) for e1, e2 in map(lambda x: x.split(','), f.read().splitlines())]
+from utils.runtime import get_runtime
 
 
+def get_input() -> list[tuple[int, int]]:
+    with open('inputs/04') as f:
+        l = [(tuple(map(int, e1.split('-'))), tuple(map(int, e2.split('-')))) for e1, e2 in map(lambda x: x.split(','), f.read().splitlines())]
+
+    return l
+
+
+@get_runtime
 def part_1(l: list[tuple[int, int]]):
     overlapping = 0
 
@@ -12,6 +19,7 @@ def part_1(l: list[tuple[int, int]]):
     print(overlapping)
 
 
+@get_runtime
 def part_2(l: list[tuple[int, int]]):
     overlapping = 0
 
@@ -25,5 +33,5 @@ def part_2(l: list[tuple[int, int]]):
     print(overlapping)
 
 
-part_1(l)
-part_2(l)
+part_1(get_input())
+part_2(get_input())

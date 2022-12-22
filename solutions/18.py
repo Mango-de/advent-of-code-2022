@@ -1,7 +1,14 @@
-with open('inputs/18') as f:
-    cubes = [*map(tuple, map(lambda c: (int(x) for x in c.split(',')), f.read().splitlines()))]
+from utils.runtime import get_runtime
 
 
+def get_input() -> list[tuple[int, int, int]]:
+    with open('inputs/18') as f:
+        l = [*map(tuple, map(lambda c: (int(x) for x in c.split(',')), f.read().splitlines()))]
+
+    return l
+
+
+@get_runtime
 def part_1(cubes: list[tuple[int, int, int]]):
     not_connected_sides = 0
 
@@ -21,5 +28,5 @@ def part_1(cubes: list[tuple[int, int, int]]):
 #     pass
 
 
-part_1(cubes)
-# part_2(cubes)
+part_1(get_input())
+# part_2(get_input())

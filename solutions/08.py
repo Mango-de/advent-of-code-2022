@@ -1,10 +1,17 @@
 from functools import reduce
 from operator import mul
 
-with open('inputs/08') as f:
-    grid = [[int(x) for x in y] for y in f.read().splitlines()]
+from utils.runtime import get_runtime
 
 
+def get_input() -> list[list[int]]:
+    with open('inputs/08') as f:
+        l = [[int(x) for x in y] for y in f.read().splitlines()]
+
+    return l
+
+
+@get_runtime
 def part_1(grid: list[list[int]]):
     visible = 2 * len(grid) + 2 * (len(grid[0]) - 2)
 
@@ -41,6 +48,7 @@ def part_1(grid: list[list[int]]):
     print(visible)
 
 
+@get_runtime
 def part_2(grid: list[list[int]]):
     max_score = 0
 
@@ -79,5 +87,5 @@ def part_2(grid: list[list[int]]):
     print(max_score)
 
 
-part_1(grid)
-part_2(grid)
+part_1(get_input())
+part_2(get_input())

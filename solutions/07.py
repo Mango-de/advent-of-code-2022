@@ -1,5 +1,11 @@
-with open('inputs/07') as f:
-    l = f.read().splitlines()
+from utils.runtime import get_runtime
+
+
+def get_input() -> list[str]:
+    with open('inputs/07') as f:
+        l = f.read().splitlines()
+
+    return l
 
 
 def get_sizes(l: list[str]) -> dict[tuple, int]:
@@ -34,17 +40,19 @@ def get_sizes(l: list[str]) -> dict[tuple, int]:
     return sizes
 
 
+@get_runtime
 def part_1(l: list[str]):
     sizes = get_sizes(l).values()
 
     print(sum(filter(lambda x: x <= 100_000, sizes)))
 
 
+@get_runtime
 def part_2(l: list[str]):
     sizes = get_sizes(l)
 
     print(min(filter(lambda x: x >= 30_000_000 - (70_000_000 - sizes[()]), sizes.values())))
 
 
-part_1(l)
-part_2(l)
+part_1(get_input())
+part_2(get_input())

@@ -3,8 +3,14 @@ from itertools import chain
 from operator import sub
 from typing import Iterable
 
-with open('inputs/15') as f:
-    coordinates = [tuple(map(int, re.findall(r'=(-?\d+)', line))) for line in f.read().splitlines()]
+from utils.runtime import get_runtime
+
+
+def get_input() -> list[tuple[int, int, int, int]]:
+    with open('inputs/15') as f:
+        l = [tuple(map(int, re.findall(r'=(-?\d+)', line))) for line in f.read().splitlines()]
+
+    return l
 
 
 def get_blocked(closest_distance: int, distance: int) -> int:
@@ -19,7 +25,7 @@ def get_blocked(closest_distance: int, distance: int) -> int:
             return blocked_in_row
 
 
-def is_possible(sensors: tuple[int, int, int], x: int, y: int):
+def is_possible(sensors: tuple[int, int, int], x: int, y: int) -> bool:
     return all(abs(x - sx) + abs(y - sy) > distance for sx, sy, distance in sensors)
 
 
@@ -41,6 +47,7 @@ def get_line_between_points(x1: int, y1: int, x2: int, y2: int) -> Iterable[tupl
         yield x, y
 
 
+@get_runtime
 def part_1(coordinates: list[tuple[int, int, int, int]]):
     # coordinates of sensor and its distance to closest beacon
     sensors = [(sx, sy, sum(map(abs, map(sub, (sx, sy), (bx, by))))) for sx, sy, bx, by in coordinates]
@@ -58,6 +65,7 @@ def part_1(coordinates: list[tuple[int, int, int, int]]):
     print(len(no_beacon - set(e[2] for e in coordinates if e[3] == y))) # if a beacon is in row y, don't consider its position to be impossible
 
 
+@get_runtime
 def part_2(coordinates: list[tuple[int, int, int, int]]):
     sensors = [(sx, sy, sum(map(abs, map(sub, (sx, sy), (bx, by))))) for sx, sy, bx, by in coordinates]
 
@@ -79,5 +87,5 @@ def part_2(coordinates: list[tuple[int, int, int, int]]):
                 return
 
 
-part_1(coordinates)
-part_2(coordinates)
+part_1(get_input())
+part_2(get_input())

@@ -4,15 +4,17 @@ from operator import add, floordiv, mul, sub
 
 from sympy import parse_expr, solve
 
-with open('inputs/21') as f:
-    data = dict(map(lambda x: re.match(r'([a-z]+): (.+)', x).groups(), f.read().splitlines()))
+from utils.runtime import get_runtime
 
-operations = {
+OPERATIONS = {
     '+': add,
     '-': sub,
     '*': mul,
     '/': floordiv # = //
 }
+
+with open('inputs/21') as f:
+    data = dict(map(lambda x: re.match(r'([a-z]+): (.+)', x).groups(), f.read().splitlines()))
 
 
 @cache
@@ -21,7 +23,7 @@ def calculate(key: str) -> int:
         return int(value)
 
     k1, op, k2 = value.split()
-    return operations[op](calculate(k1), calculate(k2))
+    return OPERATIONS[op](calculate(k1), calculate(k2))
 
 
 @cache
@@ -33,10 +35,12 @@ def make_equation(key: str) -> str:
     return f'({make_equation(k1)}) {op} ({make_equation(k2)})'
 
 
+@get_runtime
 def part_1():
     print(calculate('root'))
 
 
+@get_runtime
 def part_2():
     left, _, right = data['root'].split()
     print(solve(sub(*map(parse_expr, map(make_equation, (left, right)))), 'x')[0])

@@ -1,7 +1,14 @@
-with open('inputs/10') as f:
-    l = f.read().splitlines()
+from utils.runtime import get_runtime
 
 
+def get_input() -> list[str]:
+    with open('inputs/10') as f:
+        l = f.read().splitlines()
+
+    return l
+
+
+@get_runtime
 def part_1(l: list[str]):
     x = 1
     cycle = 0
@@ -25,6 +32,7 @@ def part_1(l: list[str]):
     print(signal_strength)
 
 
+@get_runtime
 def part_2(l: list[str]):
     x = 1
     cycle = 0
@@ -50,5 +58,5 @@ def part_2(l: list[str]):
         print(''.join(sprite))
 
 
-part_1(l)
-part_2(l)
+part_1(get_input())
+part_2(get_input())
