@@ -1,9 +1,18 @@
 **/.git
+**/.vscode
 **/__pycache__
+**/target
+**/lib
+**/bin
+*.exe
+*.pdb
+*.class
 .env
-.vscode
 12.py
 16.py
 19.py
 23.py
 24.py
+**/Cargo.lock
+# Java/adventofcode/README.md
+Java

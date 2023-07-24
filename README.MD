@@ -11,3 +11,7 @@ Look at [this file](.env.example), set the SESSION_TOKEN of https://adventofcode
 If you don't have the requests module, just download it via pip:
 
 `pip install requests`
+
+### Rust solutions
+
+I'm a beginner in the Rust programming language. To learn the language I implement AoC solutions in Rust, so don't expect too much quality in my code written in Rust.
